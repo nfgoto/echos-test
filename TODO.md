@@ -2,15 +2,14 @@
 
 ## Sécurité
 
-1. **Validation et Sanitation**: Utiliser des bibliothèques comme `class-validator` pour valider toutes les entrées utilisateur.
-2. **Cryptage des Mots de Passe**: Assurer l'utilisation de `bcrypt` pour le hachage des mots de passe avant de les stocker dans la base de données.
-3. **Protection CSRF**: Mettre en place des mécanismes de protection contre les attaques CSRF (Cross-Site Request Forgery).
-4. **Gestion des Rôles et Permissions**: Implémenter une gestion fine des rôles et permissions pour limiter l'accès aux routes sensibles.
-5. **Journalisation des Activités**: Enregistrer les tentatives de connexion et les modifications des données critiques.
-6. **Taux Limit et Protection contre les Attaques par Force Brute**: Utiliser des taux limit pour les points d'entrée critiques comme les endpoints d'authentification.
-7. **Sécurisation des entête HTTP**: Utiliser `helmet` pour sécuriser les entête HTTP.
-8. **Validation des Jetons JWT**: Implémenter des vérifications robustes des jetons JWT pour éviter les attaques de type JWT forgery.
-9. **Accèa sécurisée à la documentation d'API** sécuriser l'accès au la documention swagger aux utilisateurs authorisés
+1. **Protection CSRF**: Mettre en place des mécanismes de protection contre les attaques CSRF (Cross-Site Request Forgery).
+2. **Gestion des Rôles et Permissions**: Implémenter une gestion fine des rôles et permissions pour limiter l'accès aux routes sensibles.
+3. **Journalisation des Activités**: Enregistrer les tentatives de connexion et les modifications des données critiques.
+4. **Taux Limit et Protection contre les Attaques par Force Brute**: Utiliser des taux limit pour les points d'entrée critiques comme les endpoints d'authentification.
+5. **Sécurisation des entête HTTP**: Utiliser `helmet` pour sécuriser les entête HTTP.
+6. **Validation des Jetons JWT**: Implémenter des vérifications robustes des jetons JWT pour éviter les attaques de type JWT forgery.
+7. **Accèa sécurisée à la documentation d'API** sécuriser l'accès au la documention swagger aux utilisateurs authorisés
+8. **Gestion des jetons JWT à la déconnexion** rendre un invalides les jetons JWT (décider si gestion stateless ou stateful de la connexion de l'utilisateur)
 
 ## Testabilité
 
