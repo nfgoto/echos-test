@@ -6,7 +6,7 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from '../strategies/jwt.strategy';
 import { AuthController } from './auth.controller';
-import config from 'src/config';
+import config from '../config';
 
 const { jwtKey, jwtExpiration } = config();
 
@@ -16,8 +16,8 @@ const { jwtKey, jwtExpiration } = config();
     PassportModule,
     JwtModule.register({
       secret: jwtKey,
-      signOptions: { 
-        expiresIn: jwtExpiration 
+      signOptions: {
+        expiresIn: jwtExpiration
       }
     }),
   ],
