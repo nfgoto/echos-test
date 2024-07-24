@@ -6,17 +6,19 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from '../strategies/jwt.strategy';
 import { AuthController } from './auth.controller';
+import config from 'src/config';
 
-// TODO: use a configuration module to retrieve env vars
-const secretKey = process.env.JWT_KEY;
+const { jwtKey, jwtExpiration } = config();
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: secretKey,
-      signOptions: { expiresIn: '60m' },
+      secret: jwtKey,
+      signOptions: { 
+        expiresIn: jwtExpiration 
+      }
     }),
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],

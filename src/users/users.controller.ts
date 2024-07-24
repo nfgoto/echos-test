@@ -6,6 +6,7 @@ import { RolesGuard } from './guards/roles.guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Role } from './roles/role.enum';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -15,7 +16,7 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
     @Post()
-    @Roles('admin')
+    @Roles(Role.ADMIN)
     @ApiOperation({ summary: 'Create a new user' })
     @ApiResponse({ status: 201, description: 'The user has been successfully created.' })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -23,8 +24,8 @@ export class UsersController {
         return this.usersService.create(createUserDto);
     }
 
-    @Roles('admin')
     @Get()
+    @Roles(Role.ADMIN)
     @ApiOperation({ summary: 'Get all users' })
     @ApiResponse({ status: 200, description: 'The users have been successfully retrieved.' })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -40,8 +41,8 @@ export class UsersController {
         return req.user;
     }
 
-    @Roles('admin')
     @Get(':pseudonyme')
+    @Roles(Role.ADMIN, Role.USER)
     @ApiOperation({ summary: 'Get a user by pseudonym' })
     @ApiResponse({ status: 200, description: 'The user has been successfully retrieved.' })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -50,6 +51,7 @@ export class UsersController {
     }
 
     @Patch('me')
+    @Roles(Role.USER)
     @ApiOperation({ summary: 'Update the current user profile' })
     @ApiResponse({ status: 200, description: 'The user profile has been successfully updated.' })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -57,8 +59,8 @@ export class UsersController {
         return this.usersService.update(req.user.pseudonyme, updateUserDto);
     }
 
-    @Roles('admin')
     @Patch(':pseudonyme')
+    @Roles(Role.ADMIN)
     @ApiOperation({ summary: 'Update a user by pseudonym' })
     @ApiResponse({ status: 200, description: 'The user has been successfully updated.' })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -66,7 +68,7 @@ export class UsersController {
         return this.usersService.update(pseudonyme, updateUserDto);
     }
 
-    @Roles('admin')
+    @Roles(Role.ADMIN)
     @Delete(':pseudonyme')
     @ApiOperation({ summary: 'Delete a user by pseudonym' })
     @ApiResponse({ status: 200, description: 'The user has been successfully deleted.' })

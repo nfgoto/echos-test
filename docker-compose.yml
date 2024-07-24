@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     environment:
       - MONGODB_URI=mongodb://mongo:27017/nest
+      - JWT_KEY=thisIsSuperSecretAndMustNotBeVisibleInSourceCodeAndStoredInASecretManager
     depends_on:
       - mongo
 
